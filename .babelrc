@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": [
+    ["react-hot-loader/babel"],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ]
+}
