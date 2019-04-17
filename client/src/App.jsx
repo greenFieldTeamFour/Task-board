@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 // RHL only for front end development
 import { hot } from 'react-hot-loader';
 
 class App extends Component {
-  render() {
-    return <div>Welcome to a Modern Mini React Boilerplate</div>;
-  }
+  constructor(props){
+    super(props)
+      this.state = {
+        list : []
+      }
+      this.getData = this.getData.bind(this);
+    };
+    getData(){
+      $.ajax({
+        url:'/tasks',
+        method: 'GET',
+        success:(data)=>{
+          this.setState({list:data});
+          console.log(data);
+        },
+        error:(xhr, err)=>{
+        console.log('you have an err', err);
+        }
+      });
+    }
+    componentDidMount(){
+  this.getData();
 }
+
+  render() {
+    console.log(this.state.list);
+    return (<div>Welcome to a Modern Minimal React Boilerplate</div>)
+  }
+};
 // hot export works with RHL. Remove line 11 when starting fullstack integration
 export default hot(module)(App);
 // Uncomment line 13 & delete line 11 when starting fullstack integration
 // export default App;
+//module.exports = App;

@@ -6,24 +6,21 @@ const mysql = require('mysql2');
 const config = {
   host: 'localhost',
   user: 'root',
-  password: 'password',
-  database: 'yourDB',
+  password: 'holacode',
+  database: 'taskBoard',
 };
 
 const connection = mysql.createConnection(config);
 
 //Example mysql query using Promises
-const sampleQuery = function() {
-  return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM table', (err, data) => {
-      if (err) {
-        return reject(err);
+var getInfoFromDatabase = function(callback){
+    connection.query('SELECT * FROM task', function(err, data){
+      if(err){
+        callback(err, null);
+      }else{
+        callback(null, data)
       }
-      return resolve(data);
     });
-  });
 };
 
-module.exports = {
-  sampleQuery,
-};
+module.exports.getInfoFromDatabase = getInfoFromDatabase
