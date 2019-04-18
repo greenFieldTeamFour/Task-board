@@ -7,6 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {/* Render AddTask */}
         <AddTask />
       </div>
     )
