@@ -11,6 +11,21 @@ class App extends Component {
       }
       this.getData = this.getData.bind(this);
     };
+
+    addTask(task){
+      $.ajax({
+        method: 'POST',
+        url: '/task',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          task:task
+        })
+      }).done(()=>{
+        this.getData();
+      });
+
+    }
+
     getData(){
       $.ajax({
         url:'/tasks',
@@ -33,6 +48,8 @@ class App extends Component {
     return (<div>Welcome to a Modern Minimal React Boilerplate</div>)
   }
 };
+
+
 // hot export works with RHL. Remove line 11 when starting fullstack integration
 export default hot(module)(App);
 // Uncomment line 13 & delete line 11 when starting fullstack integration

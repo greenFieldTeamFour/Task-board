@@ -23,4 +23,17 @@ var getInfoFromDatabase = function(callback){
     });
 };
 
+const insertOne = function (task, cb){
+  con.query('INSERT INTO comments (task) VALUES(?)',
+[ , task], (err, results, fields )=>{
+  if(err) {
+    console.log(posErr1);
+      cb(err, null);
+    } else {
+      console.log(results);
+      cb(null, results);
+    }
+ });
+};
+
 module.exports.getInfoFromDatabase = getInfoFromDatabase

@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 const compression = require('compression');
 
 const app = express();
+
 var databaseInfo = require('../database/mysql.js')
+
 //middleware
 app.use(compression());
 app.use(bodyParser.json());
@@ -19,6 +21,24 @@ app.get('/tasks', function(req, res){
       res.json(data)
     }
   });
+});
+
+app.post('/tasks',function(req,res){
+
+  let task = req.body.task;
+
+  if(!task){
+    res.sendStatus(400);
+  }else{
+    database.insertOne(task, (err, results)=>{
+      if(err){
+        console.log(posErr2);
+        res.sendStatus(500);
+      }else{
+        res.status(200).json(results);
+      }
+    });
+  }
 });
 
 module.exports = app;
