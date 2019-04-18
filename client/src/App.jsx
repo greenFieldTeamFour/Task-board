@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 // RHL only for front end development
 import { hot } from 'react-hot-loader';
+import AddTask from './components/AddTask';
 
 //class constructor contains props and state
 class App extends Component {
@@ -45,8 +46,17 @@ class App extends Component {
 }
 //renders data to the DOM
   render() {
+<<<<<<< HEAD
     console.log(this.state.list);
     return (<div>Welcome to a Modern Minimal React Boilerplate</div>)
+=======
+    return (
+      <div>
+        {/* Render AddTask */}
+        <AddTask />
+      </div>
+    )
+>>>>>>> ad1a5e13fc812184c98475ec5bb2a60912fd6b4e
   }
 };
 
