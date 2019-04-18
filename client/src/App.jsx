@@ -3,6 +3,7 @@ import $ from 'jquery';
 // RHL only for front end development
 import { hot } from 'react-hot-loader';
 
+//class constructor contains props and state
 class App extends Component {
   constructor(props){
     super(props)
@@ -11,7 +12,7 @@ class App extends Component {
       }
       this.getData = this.getData.bind(this);
     };
-
+//post method to send data to the server wich will be than transfered to the database
     addTask(task){
       $.ajax({
         method: 'POST',
@@ -25,7 +26,7 @@ class App extends Component {
       });
 
     }
-
+//gets data from the server that was retrieved from database
     getData(){
       $.ajax({
         url:'/tasks',
@@ -42,7 +43,7 @@ class App extends Component {
     componentDidMount(){
   this.getData();
 }
-
+//renders data to the DOM
   render() {
     console.log(this.state.list);
     return (<div>Welcome to a Modern Minimal React Boilerplate</div>)

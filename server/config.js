@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/../client/dist"));
 
 //HTTP Requests go here
+
+//retrievs data from the database and displays it as a json object
+//in the front end
+//gives you and err message if data cannot be retrieved
 app.get('/tasks', function(req, res){
   databaseInfo.getInfoFromDatabase(function(err, data){
     if(err){
@@ -22,6 +26,10 @@ app.get('/tasks', function(req, res){
     }
   });
 });
+
+
+//sends information to be inserted to the database
+//checks if the task already exists *(line maybe deleted)* in the future
 
 app.post('/tasks',function(req,res){
 

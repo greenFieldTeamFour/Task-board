@@ -12,7 +12,8 @@ const config = {
 
 const connection = mysql.createConnection(config);
 
-//Example mysql query using Promises
+//this function gives the server data from the database or an err message
+//if data cannot be retrieved
 var getInfoFromDatabase = function(callback){
     connection.query('SELECT * FROM task', function(err, data){
       if(err){
@@ -23,6 +24,7 @@ var getInfoFromDatabase = function(callback){
     });
 };
 
+//this function inserts data inputed by the frontend into the database
 const insertOne = function (task, cb){
   con.query('INSERT INTO comments (task) VALUES(?)',
 [ , task], (err, results, fields )=>{
@@ -35,5 +37,5 @@ const insertOne = function (task, cb){
     }
  });
 };
-
+//export to server
 module.exports.getInfoFromDatabase = getInfoFromDatabase
