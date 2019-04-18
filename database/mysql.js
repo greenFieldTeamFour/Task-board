@@ -6,24 +6,36 @@ const mysql = require('mysql2');
 const config = {
   host: 'localhost',
   user: 'root',
-  password: 'password',
-  database: 'yourDB',
+  password: 'holacode',
+  database: 'taskBoard',
 };
 
 const connection = mysql.createConnection(config);
 
-//Example mysql query using Promises
-const sampleQuery = function() {
-  return new Promise((resolve, reject) => {
-    connection.query('SELECT * FROM table', (err, data) => {
-      if (err) {
-        return reject(err);
+//this function gives the server data from the database or an err message
+//if data cannot be retrieved
+var getInfoFromDatabase = function(callback){
+    connection.query('SELECT * FROM task', function(err, data){
+      if(err){
+        callback(err, null);
+      }else{
+        callback(null, data)
       }
-      return resolve(data);
     });
-  });
 };
 
-module.exports = {
-  sampleQuery,
+//this function inserts data inputed by the frontend into the database
+const insertOne = function (task, cb){
+  con.query('INSERT INTO comments (task) VALUES(?)',
+[ , task], (err, results, fields )=>{
+  if(err) {
+    console.log(posErr1);
+      cb(err, null);
+    } else {
+      console.log(results);
+      cb(null, results);
+    }
+ });
 };
+//export to server
+module.exports.getInfoFromDatabase = getInfoFromDatabase
