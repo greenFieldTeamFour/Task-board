@@ -1,0 +1,2 @@
+# Git Workflow #
+>Task-Board Git Workflow is based on only allowing one pull request at a time due to the small team size. Through direct communication the rest of the team then pulls from the upstream master after saving and commiting their work. The final step is to merge changes into the local master.
