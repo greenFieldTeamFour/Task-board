@@ -4,38 +4,46 @@ export default class AddTask extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: ''
-		};
-		
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		
-	}
-	
-	handleChange(e) {
-		this.setState({value: event.target.value});
+			userInput: '',
+			list: []
+		}
 	}
 
-	handleSubmit(e) {
-		console.log(`A name was submitted: ${this.state.value}`);
-		e.preventDefault();
+	changeUserInput(input) {
+		this.setState({
+			userInput: input
+		});
+	}
+
+	addTask(input){
+		let taskArray = this.state.list;
+		if (input === ''){
+			alert("Please enter a task!")
+		} else {
+		taskArray.push(input);
+		}
+		this.setState({
+			list: taskArray,
+			userInput: ''
+		})
 	}
 
 	render() {
 		return (
 			<div>
 				<center>
-					<h1>Add Task</h1>
+					<h1>Task Board</h1>
 					<div>
-						<form onSubmit = {this.handleSubmit}>
-							<label>
-								<input type="text" placeholder="New Task" value = {this.state.value} onChange = {this.handleChange} />
-							</label>
-							<input type="submit" value="Submit" />
-						</form>
-					</div>
-					<div>
-						
+						<input
+							placeholder = "Enter a new task"
+							onChange={ (e)=>this.changeUserInput(e.target.value)}
+							value={this.state.userInput}
+							type="text"
+							/>
+							<button onClick={()=> this.addTask(this.state.userInput)}>Add Task</button>
+							<ul>
+								{this.state.list.map( (val)=> <li>{val}</li>)}
+							</ul>
 					</div>
 				</center>
 			</div>
