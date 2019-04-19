@@ -37,6 +37,7 @@ app.post('/tasks',function(req,res){
 
   if(!task){
     res.sendStatus(400);
+    console.log(task);
   }else{
     databaseInfo.insertOne(task, (err, results)=>{
       if(err){

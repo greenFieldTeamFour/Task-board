@@ -28,7 +28,7 @@ var getInfoFromDatabase = function(callback){
 //this function inserts data inputed by the frontend into the database
 const insertOne = function (task, cb){
   connection.query('INSERT INTO task (task) VALUES(?)',
-[ , task], (err, results, fields )=>{
+[task], (err, results, fields )=>{
   if(err) {
       cb(err, null);
     } else {
