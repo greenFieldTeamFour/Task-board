@@ -18,7 +18,7 @@ export default class AddTask extends Component {
 			userInput: input
 		});
 	}
-	
+
 	addTask(input){
 		//placeholder for what's being added
 		let taskArray = this.state.list;
@@ -38,9 +38,10 @@ export default class AddTask extends Component {
 
 	//post method to send data to the server wich will be than transfered to the database
 	addTask(task){
+		console.log(task);
 		$.ajax({
 			method: 'POST',
-			url: '/task',
+			url: '/tasks',
 			contentType: 'application/json',
 			data: JSON.stringify({
 				task:task
@@ -76,7 +77,7 @@ this.getData();
 					<div>
 						<input
 							placeholder = "Enter a new task"
-							// handle the user input 
+							// handle the user input
 							onChange={ (e)=>this.changeUserInput(e.target.value)}
 							// set value to the userInput from state
 							value={this.state.userInput}

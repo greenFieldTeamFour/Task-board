@@ -38,10 +38,10 @@ app.post('/tasks',function(req,res){
   if(!task){
     res.sendStatus(400);
   }else{
-    database.insertOne(task, (err, results)=>{
+    databaseInfo.insertOne(task, (err, results)=>{
       if(err){
-        console.log(posErr2);
         res.sendStatus(500);
+        console.log(err);
       }else{
         res.status(200).json(results);
       }

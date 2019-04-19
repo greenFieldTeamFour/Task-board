@@ -2,6 +2,7 @@
 //mysql2 npm package has support for Promises
 const mysql = require('mysql2');
 
+
 //change database credentials as needed
 const config = {
   host: 'localhost',
@@ -26,10 +27,9 @@ var getInfoFromDatabase = function(callback){
 
 //this function inserts data inputed by the frontend into the database
 const insertOne = function (task, cb){
-  con.query('INSERT INTO comments (task) VALUES(?)',
+  connection.query('INSERT INTO task (task) VALUES(?)',
 [ , task], (err, results, fields )=>{
   if(err) {
-    console.log(posErr1);
       cb(err, null);
     } else {
       console.log(results);
@@ -39,3 +39,4 @@ const insertOne = function (task, cb){
 };
 //export to server
 module.exports.getInfoFromDatabase = getInfoFromDatabase
+module.exports.insertOne = insertOne
