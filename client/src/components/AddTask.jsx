@@ -18,24 +18,6 @@ export default class AddTask extends Component {
 			userInput: input
 		});
 	}
-	
-	addTask(input){
-		//placeholder for what's being added
-		let taskArray = this.state.list;
-		// edge case for the user not to be able to enter an empty task
-		if (input === ''){
-			alert("Please enter a task!")
-		} else {
-			//  push the input into placeholder
-			taskArray.push(input);
-		}
-		//reset the input box once sumbit is clicked on
-		this.setState({
-			list: taskArray,
-			userInput: ''
-		})
-	}
-
 	//post method to send data to the server wich will be than transfered to the database
 	addTask(task){
 		console.log(task);
@@ -48,9 +30,11 @@ export default class AddTask extends Component {
 			})
 		}).done(() => {
 			this.getData();
+			this.setState({
+				userInput: ''
+			})
 		});
 	}
-
 	//gets data from the server that was retrieved from database
 	getData(){
 		$.ajax({
@@ -78,6 +62,10 @@ this.getData();
 					// set value to the userInput from state
 					value={this.state.userInput}
 					type="text"
+					onKeyDown={e => {if (e.key === 'Enter') {
+						console.log('task submitted');
+						this.addTask(this.state.userInput);
+					}}}
 				/>
 				{/* onClick so when the submit button is clicked the input and be saved */}
 				<button onClick={() => this.addTask(this.state.userInput)}>Add Task</button>
