@@ -18,7 +18,7 @@ export default class AddTask extends Component {
 			userInput: input
 		});
 	}
-
+	
 	addTask(input){
 		//placeholder for what's being added
 		let taskArray = this.state.list;
@@ -46,10 +46,9 @@ export default class AddTask extends Component {
 			data: JSON.stringify({
 				task:task
 			})
-		}).done(()=>{
+		}).done(() => {
 			this.getData();
 		});
-
 	}
 
 	//gets data from the server that was retrieved from database
@@ -57,11 +56,11 @@ export default class AddTask extends Component {
 		$.ajax({
 			url:'/tasks',
 			method: 'GET',
-			success:(data)=>{
+			success:(data) => {
 				this.setState({list:data});
-				console.log(data);
+				console.log(`This is what currently is listed in Database:`, data);
 			},
-			error:(xhr, err)=>{
+			error:(xhr, err) => {
 			console.log('you have an err', err);
 			}
 		});
@@ -72,25 +71,20 @@ this.getData();
 	render() {
 		return (
 			<div>
-				<center>
-					<h1>Task Board</h1>
-					<div>
-						<input
-							placeholder = "Enter a new task"
-							// handle the user input
-							onChange={ (e)=>this.changeUserInput(e.target.value)}
-							// set value to the userInput from state
-							value={this.state.userInput}
-							type="text"
-						/>
-						{/* onClick so when the submit button is clicked the input and be saved */}
-						<button onClick={()=> this.addTask(this.state.userInput)}>Add Task</button>
-						<ul>
-							{/*iterate through list and return it so its displayed*/}
-							{this.state.list.map( (val)=> <li>{val.task}</li>)}
-						</ul>
-					</div>
-				</center>
+				<input
+					placeholder = "Enter a new task"
+					// handle the user input 
+					onChange={(e) => this.changeUserInput(e.target.value)}
+					// set value to the userInput from state
+					value={this.state.userInput}
+					type="text"
+				/>
+				{/* onClick so when the submit button is clicked the input and be saved */}
+				<button onClick={() => this.addTask(this.state.userInput)}>Add Task</button>
+				<ul>
+					{/*iterate through list and return it so its displayed*/}
+					{this.state.list.map((val)=> <li>{val.task}</li>)}
+				</ul>
 			</div>
 		);
 	}

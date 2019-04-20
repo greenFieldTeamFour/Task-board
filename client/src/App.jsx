@@ -13,8 +13,10 @@ class App extends Component {
   render() {
     return (
       <div>
-   
-        <AddTask />
+        <center>
+          <h1>Task Board</h1>
+          <AddTask />
+        </center>
       </div>
     )
   }

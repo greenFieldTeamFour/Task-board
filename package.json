@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack --config webpack.config.js --watch --mode development",
     "frontend": "webpack-dev-server --hot --mode development --open",
-    "start-dev": "nodemon server/index.js",
+    "start-dev": "nodemon server/config.js",
     "build": "webpack --config webpack.prod.js --mode production"
   },
   "dependencies": {
