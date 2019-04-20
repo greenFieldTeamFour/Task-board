@@ -1,21 +1,16 @@
-DROP DATABASE IF EXISTS taskBoard;
+DROP DATABASE IF EXISTS TaskBoard;
 
-CREATE DATABASE taskBoard;
+CREATE DATABASE TaskBoard;
 
-USE taskBoard;
+USE TaskBoard;
 
-CREATE TABLE task (
+CREATE TABLE Tasks (
   id int NOT NULL AUTO_INCREMENT,
   task varchar(150) NOT NULL,
   PRIMARY KEY (ID)
 );
 
-
-INSERT INTO task (id, task) VALUES (1, "wake up");
-INSERT INTO task (id, task) VALUES (2, "get high");
-INSERT INTO task (id, task) VALUES (3, "spit fire");
-INSERT INTO task (id, task) VALUES (4, "get fly");
-INSERT INTO task (id, task) VALUES (5, "roll up");
-INSERT INTO task (id, task) VALUES (6, "ten times");
-INSERT INTO task (id, task) VALUES (7, "get out");
-INSERT INTO task (id, task) VALUES (8, "it's show time");
+INSERT INTO Tasks (id, task) VALUES (1, "Example task 1");
+INSERT INTO Tasks (id, task) VALUES (2, "Example task 2");
+INSERT INTO Tasks (id, task) VALUES (3, "Example task 3");
+INSERT INTO Tasks (id, task) VALUES (4, "Example task 4");

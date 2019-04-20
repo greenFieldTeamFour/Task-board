@@ -1,54 +1,22 @@
+// require the necessary libraries and routes
 const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require('compression');
-
+const tasksRoutes = require('./routes/tasksRoutes')
+// create a new express instance
 const app = express();
 
-var databaseInfo = require('../database/mysql.js')
+/* var databaseInfo = require('../database/mysql.js')*/
 
 //middleware
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/../client/dist"));
-
-//HTTP Requests go here
-
-//retrievs data from the database and displays it as a json object
-//in the front end
-//gives you and err message if data cannot be retrieved
-app.get('/tasks', function(req, res){
-  databaseInfo.getInfoFromDatabase(function(err, data){
-    if(err){
-      res.sendStatus(500)
-    }else{
-      res.json(data)
-    }
-  });
+app.use(tasksRoutes)
+// set port to listen, is going to be set eihter by the process or is going to be 3000
+const port = (process.env.PORT || 3003);
+// listening on 3000
+app.listen(port, () => {
+  console.log(`Listening on Port ${port}`);
 });
-
-
-//sends information to be inserted to the database
-//checks if the task already exists *(line maybe deleted)* in the future
-
-app.post('/tasks',function(req,res){
-
-  let task = req.body.task;
-
-  if(!task){
-    res.sendStatus(400);
-    console.log(task);
-  }else{
-    databaseInfo.insertOne(task, (err, results)=>{
-      if(err){
-        res.sendStatus(500);
-        console.log(err);
-      }else{
-        res.status(200).json(results);
-      }
-    });
-  }
-});
-
-module.exports = app;
-//
