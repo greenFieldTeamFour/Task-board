@@ -20,7 +20,7 @@ export default class AddTask extends Component {
 	}
 	//post method to send data to the server wich will be than transfered to the database
 	addTask(task){
-		console.log(task);
+		console.log(`New task added: ${task}`);
 		$.ajax({
 			method: 'POST',
 			url: '/tasks',
@@ -33,6 +33,19 @@ export default class AddTask extends Component {
 			this.setState({
 				userInput: ''
 			})
+		});
+	}
+	// delete
+	deleteTask(task){
+		console.log(`New task deleted: ${task}`);
+		$.ajax({
+			url: '/tasks',
+			type: 'DELETE',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				task:task
+			}),
+			success: () => this.getData()
 		});
 	}
 	//gets data from the server that was retrieved from database
@@ -49,9 +62,12 @@ export default class AddTask extends Component {
 			}
 		});
 	}
+	// initial getData
 	componentDidMount(){
-this.getData();
-}
+		console.log('Initial load of DB');
+		this.getData();
+	}
+	// obligatory render method
 	render() {
 		return (
 			<div>
@@ -68,10 +84,16 @@ this.getData();
 					}}}
 				/>
 				{/* onClick so when the submit button is clicked the input and be saved */}
-				<button onClick={() => this.addTask(this.state.userInput)}>Add Task</button>
+				<button onClick={() => {
+					console.log('task submitted');
+					this.addTask(this.state.userInput);
+					}}>Add Task</button>
 				<ul>
 					{/*iterate through list and return it so its displayed*/}
-					{this.state.list.map((val, index)=> <li key={index}>{val.task}</li>)}
+					{this.state.list.map((val, index)=> { 
+					return (<div key={index}><li >{val.task}</li>
+					<button onClick={() => {this.deleteTask(val.task)}}>Delete Task</button></div>
+					)})}
 				</ul>
 			</div>
 		);
