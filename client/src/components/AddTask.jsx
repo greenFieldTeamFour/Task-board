@@ -71,7 +71,7 @@ this.getData();
 				<button onClick={() => this.addTask(this.state.userInput)}>Add Task</button>
 				<ul>
 					{/*iterate through list and return it so its displayed*/}
-					{this.state.list.map((val)=> <li>{val.task}</li>)}
+					{this.state.list.map((val, index)=> <li key={index}>{val.task}</li>)}
 				</ul>
 			</div>
 		);

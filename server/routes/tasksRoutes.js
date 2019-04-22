@@ -23,15 +23,15 @@ tasksRoutes.get('/tasks', (req, res) => {
 });
 // post
 insertOne = (task, cb) => {
-  getConnection().query('INSERT INTO Tasks (task) VALUES(?)',
-[task], (err, results, fields ) => {
-  if(err) {
+  getConnection().query('INSERT INTO Tasks (task) VALUES(?)', [task], (err, results, fields ) => {
+    if(err) {
+      console.log('There is something wrong with the insert query', err);
       cb(err, null);
     } else {
-      console.log(results);
+      console.log(`Added ${task} with the following info:`, results);
       cb(null, results);
     }
- });
+  });
 };
 tasksRoutes.post('/tasks', (req,res) => {
   const task = req.body.task;
@@ -46,9 +46,26 @@ tasksRoutes.post('/tasks', (req,res) => {
       }else{
         res.status(200).json(results);
       }
-    });
+    });  
   }
 });
+
+// delete
+deleteOne = (task, cb) => {
+  getConnection().query("DELETE FROM Tasks WHERE (task) (?)", [task], (err, results, fields) => {
+    if(err){
+      console.log('There is something wrong with the delete query', err);
+      cb(err, null);
+    } else {
+      console.log(`Deleted ${task} with the following info:`, results);
+      cb(null, results);
+    }
+  });
+};
+tasksRoutes.delete('/tasks', (req, res) => {})
+
+
+
 
 // Displays an specific task in database
 tasksRoutes.get('/tasks/:id', (req, res) => {
