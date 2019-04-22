@@ -1,7 +1,6 @@
 const express = require('express')
 const tasksRoutes = express.Router()
 const getConnection = require('./getConnection.js')
-
 // Displays all tasks in database
 getInfoFromDatabase = (callback) => {
   getConnection().query('SELECT * FROM Tasks', (err, data) => {
@@ -49,10 +48,9 @@ tasksRoutes.post('/tasks', (req,res) => {
     });  
   }
 });
-
 // delete
 deleteOne = (task, cb) => {
-  getConnection().query("DELETE FROM Tasks WHERE (task) (?)", [task], (err, results, fields) => {
+  getConnection().query("DELETE FROM Tasks WHERE (task)=?", [task], (err, results, fields) => {
     if(err){
       console.log('There is something wrong with the delete query', err);
       cb(err, null);
@@ -62,11 +60,19 @@ deleteOne = (task, cb) => {
     }
   });
 };
-tasksRoutes.delete('/tasks', (req, res) => {})
-
-
-
-
+tasksRoutes.delete('/tasks', (req, res) => {
+  const task = req.body.task;
+  console.log(`Deleted task: ${task}`);
+  deleteOne(task, (err, results) => {
+    if(err){
+      res.sendStatus(500);
+      console.log(err);
+    }else{
+      res.status(200).json(results);
+    }
+  })
+  
+})
 // Displays an specific task in database
 tasksRoutes.get('/tasks/:id', (req, res) => {
   console.log(`Fetching task with id: ${req.params.id}`);
