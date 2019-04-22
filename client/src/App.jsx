@@ -14,7 +14,6 @@ class App extends Component {
     return (
       <div>
         <center>
-          <h1>Task Board</h1>
           <AddTask />
         </center>
       </div>
