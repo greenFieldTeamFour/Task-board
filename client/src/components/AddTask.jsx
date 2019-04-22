@@ -71,30 +71,39 @@ export default class AddTask extends Component {
 	render() {
 		return (
 			<div>
-				<input
-					placeholder = "Enter a new task"
-					// handle the user input 
-					onChange={(e) => this.changeUserInput(e.target.value)}
-					// set value to the userInput from state
-					value={this.state.userInput}
-					type="text"
-					onKeyDown={e => {if (e.key === 'Enter') {
-						console.log('task submitted');
-						this.addTask(this.state.userInput);
-					}}}
-				/>
-				{/* onClick so when the submit button is clicked the input and be saved */}
-				<button onClick={() => {
-					console.log('task submitted');
-					this.addTask(this.state.userInput);
-					}}>Add Task</button>
-				<ul>
+				<div>
+					<h1>Task Board</h1>
+						<h4>Task Description:
+						<input
+							placeholder="Enter a new task"
+							// handle the user input
+							onChange={(e) => this.changeUserInput(e.target.value)}
+							// set value to the userInput from state
+							value={this.state.userInput}
+							type="text"
+							onKeyDown={e => {
+								if (e.key === 'Enter') {
+									console.log('task submitted');
+									this.addTask(this.state.userInput);
+								}
+							}}
+						/>
+						{/* onClick so when the submit button is clicked the input and be saved */}
+						<button onClick={() => {
+							console.log('task submitted');
+							this.addTask(this.state.userInput);
+						}}>Add Task</button>
+					</h4>
+				</div>
+				<br />
+				<br />
+				<div>
 					{/*iterate through list and return it so its displayed*/}
-					{this.state.list.map((val, index)=> { 
-					return (<div key={index}><li >{val.task}</li>
-					<button onClick={() => {this.deleteTask(val.task)}}>Delete Task</button></div>
-					)})}
-				</ul>
+					{this.state.list.map((val, index) => {
+						return (<div key={index}><li>{val.task} <button onClick={() => { this.deleteTask(val.task) }}>Done</button></li></div>
+						)
+					})}
+				</div>
 			</div>
 		);
 	}
