@@ -74,9 +74,9 @@ export default class AddTask extends Component {
 			<div>
 				<div>
 					<h1>Kaizen</h1>
-						<label>Description: </label>
+						<label>Enter a new habit: </label>
 						<input
-							placeholder="Enter a new task"
+							placeholder="Example habit"
 							// handle the user input
 							onChange={(e) => this.changeUserInput(e.target.value)}
 							// set value to the userInput from state
@@ -98,13 +98,11 @@ export default class AddTask extends Component {
 				</div>
 				<br />
 				<br />
-				<div>
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
 						return (<div key={index}><p>{val.task} <button className="done" onClick={() => { this.deleteTask(val.task) }}>Done</button></p></div>
 						)
 					})}
-				</div>
 			</div>
 		);
 	}
