@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { CSSTransition } from 'react-transition-group';
+import ProgressMeter from './ProgressMeter';
 
 export default class AddTask extends Component {
 	constructor(props) {
@@ -100,7 +101,15 @@ export default class AddTask extends Component {
 				<br />
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
-						return (<div key={index}><p>{val.task} <button className="done" onClick={() => { this.deleteTask(val.task) }}>Done</button></p></div>
+						return (
+							<div key={index}>
+								<p>{val.task}
+									<button className="done" onClick={() => { this.deleteTask(val.task) }}>
+										Mastered!
+									</button>
+								</p>
+								<ProgressMeter/>
+							</div>
 						)
 					})}
 			</div>

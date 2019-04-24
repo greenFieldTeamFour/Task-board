@@ -72,3 +72,12 @@ h1 {
   transform: translate(40px, 0);
   transition: all 500ms ease-in;
 }
+
+.bar{
+  width: 33%;
+  display: inline-block;
+}
+
+.bar .barx{
+  cursor: pointer;
+}
