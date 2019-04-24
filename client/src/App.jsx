@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // RHL only for front end development
 import { hot } from 'react-hot-loader';
 import AddTask from './components/AddTask';
+import ProgressMeter from './components/ProgressMeter';
 
 //class constructor contains props and state
 class App extends Component {
