@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
-
-// RHL only for front end development
-import { hot } from 'react-hot-loader';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddTask from './components/AddTask';
-import ProgressMeter from './components/ProgressMeter';
 
-//class constructor contains props and state
+function Root() {
+  return (
+  <div className="LoginMessage">
+    <h2 >Welcome to Kaizen, please login</h2>
+  </div>
+  )
+}
+
+function Main () {
+  return (
+  <div>
+    <center>
+      <AddTask />
+    </center>
+  </div>
+  )
+}
+
+function Archive() {
+  return <h2>Archive</h2>;
+}
+
 class App extends Component {
-
-
-
 //renders data to the DOM
   render() {
     return (
-      <div>
-        <center>
-          <AddTask />
-        </center>
+      <Router>
+      <div className="LinksGroup">
+        <nav>
+              <Link className="Links" to="/">Login.</Link>
+              <Link className="Links" to="/main/">Main.</Link>
+              <Link className="Links" to="/archive/">Archive</Link>
+        </nav>
+
+        <Route path="/" exact component={Root} />
+        <Route path="/main/" component={Main} />
+        <Route path="/archive/" component={Archive} />
       </div>
+    </Router> 
     )
   }
 };
 
-
-// hot export works with RHL. Remove line 11 when starting fullstack integration
-export default hot(module)(App);
-// Uncomment line 13 & delete line 11 when starting fullstack integration
-// export default App;
-//module.exports = App;
+export default App;
