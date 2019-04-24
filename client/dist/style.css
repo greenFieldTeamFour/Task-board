@@ -81,3 +81,8 @@ h1 {
 .bar .barx{
   cursor: pointer;
 }
+
+h6{
+  transform: scale(0.75);
+  color: lightslategrey;
+}

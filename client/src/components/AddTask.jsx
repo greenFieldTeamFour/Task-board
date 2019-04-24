@@ -74,7 +74,7 @@ export default class AddTask extends Component {
 		return (
 			<div>
 				<div>
-					<h1>Kaizen</h1>
+					<h1>Kaizen<h6>Mastering your habits one click at a time!</h6></h1>
 						<label>Enter a new habit: </label>
 						<input
 							placeholder="Example habit"
