@@ -74,3 +74,16 @@ h6{
   opacity: 1;
   color: #00a07b;
 }
+
+.LinksPW{
+  color: #00a07b;
+}
+
+.LinksPW:hover{
+  color:#fff;
+}
+
+.KaizenW{
+  color: #00a07b;
+  background: none;
+}

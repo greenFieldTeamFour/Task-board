@@ -5,7 +5,14 @@ import AddTask from './components/AddTask';
 function Root() {
   return (
   <div className="LoginMessage">
-    <h2 >Welcome to Kaizen, please login</h2>
+    <center>
+      <br/>
+      <h2 >Welcome to <mark className="KaizenW">Kaizen</mark></h2>
+      <br/>
+      <input placeholder="Enter User Name" type="text"/>
+      <input placeholder="Password" type="password" id="pass" name="password"/>
+      <button><Link className="LinksPW" to="/main/">Login</Link></button>
+    </center>
   </div>
   )
 }
@@ -21,7 +28,7 @@ function Main () {
 }
 
 function Archive() {
-  return <h2>Archive</h2>;
+  return <center><h2>In progress...</h2></center>
 }
 
 class App extends Component {
@@ -31,9 +38,9 @@ class App extends Component {
       <Router>
       <div className="LinksGroup">
         <nav>
-              <Link className="Links" to="/">Login.</Link>
-              <Link className="Links" to="/main/">Main.</Link>
-              <Link className="Links" to="/archive/">Archive</Link>
+              <Link className="Links" to="/">Login|</Link>
+              <Link className="Links" to="/main/">Main|</Link>
+              <Link className="Links" to="/archive/">Archive|</Link>
         </nav>
 
         <Route path="/" exact component={Root} />
