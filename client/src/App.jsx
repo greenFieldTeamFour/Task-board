@@ -1,30 +1,55 @@
 import React, { Component } from 'react';
-
-// RHL only for front end development
-import { hot } from 'react-hot-loader';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddTask from './components/AddTask';
-import ProgressMeter from './components/ProgressMeter';
 
-//class constructor contains props and state
+function Root() {
+  return (
+  <div className="LoginMessage">
+    <center>
+      <br/>
+      <h2 >Welcome to <mark className="KaizenW">Kaizen</mark><br/><h6>Where Improvement is one click away!</h6></h2>
+      <br/>
+      <input placeholder="Enter User Name" type="text"/>
+      <input placeholder="Password" type="password" id="pass" name="password"/>
+      <button><Link className="LinksPW" to="/main/">Login</Link></button>
+    </center>
+  </div>
+  )
+}
+
+function Main () {
+  return (
+  <div>
+    <center>
+      <AddTask />
+    </center>
+  </div>
+  )
+}
+
+function Archive() {
+  return <center><h2>In progress...</h2></center>
+}
+
 class App extends Component {
-
-
-
 //renders data to the DOM
   render() {
     return (
-      <div>
-        <center>
-          <AddTask />
-        </center>
+      <Router>
+      <div className="LinksGroup">
+        <nav>
+              <Link className="Links" to="/">Login|</Link>
+              <Link className="Links" to="/main/">Main|</Link>
+              <Link className="Links" to="/archive/">Archive|</Link>
+        </nav>
+
+        <Route path="/" exact component={Root} />
+        <Route path="/main/" component={Main} />
+        <Route path="/archive/" component={Archive} />
       </div>
+    </Router> 
     )
   }
 };
 
-
-// hot export works with RHL. Remove line 11 when starting fullstack integration
-export default hot(module)(App);
-// Uncomment line 13 & delete line 11 when starting fullstack integration
-// export default App;
-//module.exports = App;
+export default App;
