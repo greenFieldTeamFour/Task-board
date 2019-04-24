@@ -5,9 +5,6 @@ const compression = require('compression');
 const tasksRoutes = require('./routes/tasksRoutes')
 // create a new express instance
 const app = express();
-
-/* var databaseInfo = require('../database/mysql.js')*/
-
 //middleware
 app.use(compression());
 app.use(bodyParser.json());

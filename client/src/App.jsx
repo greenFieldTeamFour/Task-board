@@ -7,7 +7,7 @@ function Root() {
   <div className="LoginMessage">
     <center>
       <br/>
-      <h2 >Welcome to <mark className="KaizenW">Kaizen</mark></h2>
+      <h2 >Welcome to <mark className="KaizenW">Kaizen</mark><br/><h6>Where Improvement is one click away!</h6></h2>
       <br/>
       <input placeholder="Enter User Name" type="text"/>
       <input placeholder="Password" type="password" id="pass" name="password"/>
