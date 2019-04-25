@@ -49,6 +49,19 @@ export default class AddTask extends Component {
 			success: () => this.getData()
 		});
 	}
+	// mastered a task
+	masteredTask(task){
+		console.log(`New task mastered: ${task}`);
+		$.ajax({
+			url: '/mastered',
+			type: 'DELETE',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				task:task
+			}),
+			success: () => this.getData()
+		});
+	}
 	// add 5 to progress
 	addFive(task){
 		console.log(`Progress +5 from: ${task}`);
@@ -134,7 +147,7 @@ export default class AddTask extends Component {
 										Delete
 									</button>
 									{val.task}
-									<button className="done" onClick={() => { this.deleteTask(val.task) }}>
+									<button className="done" onClick={() => { this.masteredTask(val.task); this.deleteTask(val.task); }}>
 										Mastered!
 									</button>
 								</p>

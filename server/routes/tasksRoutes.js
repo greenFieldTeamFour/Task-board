@@ -72,6 +72,30 @@ tasksRoutes.delete('/tasks', (req, res) => {
     }
   })
 })
+// mastered
+masterOne = (task, cb) => {
+  getConnection().query('INSERT INTO Habits (habit, fecha) VALUES(?, curDate())', [task], (err, results, fields ) => {
+    if(err){
+      console.log('There is something wrong with the insert habit query', err);
+      cb(err, null);
+    } else {
+      console.log(`Inserted ${task} with the following info:`, results);
+      cb(null, results);
+    }
+  })
+}
+tasksRoutes.delete('/mastered', (req, res) => {
+  const task = req.body.task;
+  console.log(`Deleted task: ${task}`);
+  masterOne(task, (err, results) => {
+    if(err){
+      res.sendStatus(500);
+      console.log(err);
+    }else{
+      res.status(200).json(results);
+    }
+  })
+})
 // update progress
 add5 = (task, cb) => {
   getConnection().query("UPDATE Tasks SET progress = progress+5 WHERE (task)=?", [task], (err, results) => {
