@@ -39,7 +39,7 @@ export default class Archive extends Component {
         {this.state.list.map((val, index) => {
 						return (
               <div key={index}>
-                <p>{val.habit} mastered on : 04/22/2019</p>
+                <p className="arch">{val.habit} <mark className="innerArch">mastered on:</mark> {val.fecha[5]}{val.fecha[6]}-{val.fecha[8]}{val.fecha[9]}-{val.fecha[0]}{val.fecha[1]}{val.fecha[2]}{val.fecha[3]}</p>
               </div>
             )
         })}
