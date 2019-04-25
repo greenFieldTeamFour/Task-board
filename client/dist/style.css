@@ -41,7 +41,7 @@ button:hover {
 }
 
 p:hover {
-  color: #00a07b;  
+  color: #f8f8f8;  
   transform: scale(1.1);
 }
 
@@ -97,5 +97,5 @@ h6{
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #383838;
+  background-color: #00a07b;
 }
