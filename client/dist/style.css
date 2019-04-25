@@ -40,6 +40,17 @@ button:hover {
   transform: scale(0.75);
 }
 
+.del {
+  transform: scale(0.75);
+  border: 2px solid rgb(246, 48, 48);
+}
+
+.del:hover {
+  background: rgb(246, 48, 48);
+  color:#fff;
+  border: 2px solid rgb(246, 48, 48);
+}
+
 p:hover {
   color: #00a07b;  
   transform: scale(1.1);
@@ -86,4 +97,7 @@ h6{
 .KaizenW{
   color: #00a07b;
   background: none;
+}
+.sec1{
+  display: inline-block;
 }
