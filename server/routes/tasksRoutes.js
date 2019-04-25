@@ -127,5 +127,23 @@ tasksRoutes.post('/progressminus', (req,res) => {
     });  
   }
 });
-
+// Displays all tasks in database
+getInfoFromDatabase2 = (callback) => {
+  getConnection().query('SELECT * FROM Habits', (err, data) => {
+    if(err){
+      callback(err, null);
+    }else{
+      callback(null, data)
+    }
+  });
+};
+tasksRoutes.get('/mastered', (req, res) => {
+  getInfoFromDatabase2((err, data) => {
+    if(err){
+      res.sendStatus(500)
+    }else{
+      res.json(data)
+    }
+  });
+});
 module.exports = tasksRoutes

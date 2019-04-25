@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddTask from './components/AddTask';
+import Archived from './components/Archive';
 
 function Root() {
   return (
@@ -28,7 +29,11 @@ function Main () {
 }
 
 function Archive() {
-  return <center><h2>In progress...</h2></center>
+  return (
+    <center>
+      <Archived/>
+    </center>
+  )
 }
 
 class App extends Component {
