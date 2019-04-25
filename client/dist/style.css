@@ -87,3 +87,15 @@ h6{
   color: #00a07b;
   background: none;
 }
+
+.App p .drag {
+  margin-right: 15px;
+  cursor: move;
+}
+
+.App {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #383838;
+}
