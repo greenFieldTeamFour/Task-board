@@ -62,7 +62,7 @@ export default class ProgressMeter extends Component {
     return (
       <div className="bar">
           <div className="bar" ><p className="barx" onClick={this.decreaseBar}>-</p></div> 
-          <div className="bar"><ProgressBar className="barxz"variant="success" now={this.state.now} label={`${this.state.now}%`}/></div>
+          <div className="bar"><ProgressBar className="barxz"variant="info" now={this.state.now} label={`${this.state.now}%`}/></div>
           <div className="bar"><p className="barx"onClick={this.increaseBar}>+</p></div>
       </div>
     )
