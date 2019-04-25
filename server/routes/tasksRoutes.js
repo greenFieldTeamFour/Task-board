@@ -22,7 +22,7 @@ tasksRoutes.get('/tasks', (req, res) => {
 });
 // post
 insertOne = (task, cb) => {
-  getConnection().query('INSERT INTO Tasks (task) VALUES(?)', [task], (err, results, fields ) => {
+  getConnection().query('INSERT INTO Tasks (task, progress) VALUES(?, 0)', [task], (err, results, fields ) => {
     if(err) {
       console.log('There is something wrong with the insert query', err);
       cb(err, null);
@@ -71,22 +71,61 @@ tasksRoutes.delete('/tasks', (req, res) => {
       res.status(200).json(results);
     }
   })
-  
 })
-// Displays an specific task in database
-tasksRoutes.get('/tasks/:id', (req, res) => {
-  console.log(`Fetching task with id: ${req.params.id}`);
-  const queryString = "SELECT * FROM Tasks WHERE id = ?" // whatever we type inside [ ] is going to be the id, we can change the query a little bit in order to get users by other columns
-  const taskId = req.params.id
-  getConnection().query(queryString, [taskId], (err, rows, fields) => {
-    if(err) {
-      console.log(`Failed to query for Tasks: ${err}`)
-      res.sendStatus(500)
-      return
+// update progress
+add5 = (task, cb) => {
+  getConnection().query("UPDATE Tasks SET progress = progress+5 WHERE (task)=?", [task], (err, results) => {
+    if(err){
+      console.log('There is something wrong with the update query', err);
+      cb(err, null);
+    } else {
+      console.log(`Added 5 to ${task} progress bar`, results);
+      cb(null, results);
     }
-    console.log('I think we fetched Tasks correctly');
-    res.json(rows)
   })
-}) 
+}
+tasksRoutes.post('/progress', (req,res) => {
+  const task = req.body.task;
+  if(!task){
+    res.sendStatus(400);
+    console.log(task);
+  }else{
+    add5(task, (err, results) => {
+      if(err){
+        res.sendStatus(500);
+        console.log(err);
+      }else{
+        res.status(200).json(results);
+      }
+    });  
+  }
+});
+sub5 = (task, cb) => {
+  getConnection().query("UPDATE Tasks SET progress = progress-5 WHERE (task)=?", [task], (err, results) => {
+    if(err){
+      console.log('There is something wrong with the update query', err);
+      cb(err, null);
+    } else {
+      console.log(`Substracted 5 to ${task} progress bar`, results);
+      cb(null, results);
+    }
+  })
+}
+tasksRoutes.post('/progressminus', (req,res) => {
+  const task = req.body.task;
+  if(!task){
+    res.sendStatus(400);
+    console.log(task);
+  }else{
+    sub5(task, (err, results) => {
+      if(err){
+        res.sendStatus(500);
+        console.log(err);
+      }else{
+        res.status(200).json(results);
+      }
+    });  
+  }
+});
 
 module.exports = tasksRoutes

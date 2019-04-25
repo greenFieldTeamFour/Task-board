@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import $ from 'jquery';
+import AddTask from './AddTask';
+
 
 export default class ProgressMeter extends Component {
   constructor(props) {
@@ -7,6 +10,8 @@ export default class ProgressMeter extends Component {
 		this.state = {
       now: 0
     }
+    //this.getData2 = this.getData2.bind(this);
+
     this.increaseBar = this.increaseBar.bind(this);
     this.decreaseBar = this.decreaseBar.bind(this);
   }
@@ -15,6 +20,8 @@ export default class ProgressMeter extends Component {
     let newNow = this.state.now
     if(this.state.now <=95){
       console.log(`Progress at: ${newNow+5}`)
+      console.log(this.state.props);
+      
       this.setState({
       now: newNow+5
       })
@@ -30,7 +37,26 @@ export default class ProgressMeter extends Component {
       })
     }
   }
-
+/*
+  getData2(){
+		$.ajax({
+			url:'/tasks',
+			method: 'GET',
+			success:(data) => {
+				this.setState({now:data[2].progress});
+				console.log(`XD`, data);
+			},
+			error:(xhr, err) => {
+			console.log('you have an err', err);
+			}
+		});
+	}
+	// initial getData
+	componentDidMount(){
+		console.log(':3');
+		this.getData2();
+	}
+*/
   render() {
 
     return (

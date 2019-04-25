@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { CSSTransition } from 'react-transition-group';
-import ProgressMeter from './ProgressMeter';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export default class AddTask extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			now: 0,
 			//Create a placeholder for the user to enter their input
 			userInput: '',
 			//place holder to save user input
@@ -66,12 +66,38 @@ export default class AddTask extends Component {
 			})
 		});
 	}
-	// delete
+	// delete a task
 	deleteTask(task){
 		console.log(`New task deleted: ${task}`);
 		$.ajax({
 			url: '/tasks',
 			type: 'DELETE',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				task:task
+			}),
+			success: () => this.getData()
+		});
+	}
+	// add 5 to progress
+	addFive(task){
+		console.log(`Progress +5 from: ${task}`);
+		$.ajax({
+			url: '/progress',
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				task:task
+			}),
+			success: () => this.getData()
+		});
+	}
+	// substract 5 to progress
+	subFive(task){
+		console.log(`Progress -5 from: ${task}`);
+		$.ajax({
+			url: '/progressminus',
+			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
 				task:task
@@ -131,22 +157,24 @@ export default class AddTask extends Component {
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
 						return (
-							<div className = "App">
-								<p key={index} onDragOver= {() => this.onDragOver(index)} >
-									<div
-										className="drag"
-										draggable
-										onDragStart= {e => this.onDragStart(e, index)}
-										onDragEnd = {this.onDragEnd}
-									>
-										{val.task}
-											<button className="done" onClick={() => { this.deleteTask(val.task) }}>
-												Mastered!
-											</button>
-										<ProgressMeter/>
-									</div>
-										</p>
+						<div className="Back">	
+							<div className="sec1" key={index}>
+								<p>
+									<button className="del" onClick={() => { this.deleteTask(val.task) }}>
+										Delete
+									</button>
+									{val.task}
+									<button className="done" onClick={() => { this.deleteTask(val.task) }}>
+										Mastered!
+									</button>
+								</p>
 							</div>
+								<div className="bar">
+									<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
+									<div className="bar"><ProgressBar className="barxz"variant="success" now={val.progress} label={`${val.progress}%`}/></div>
+									<div className="bar"><p className="barx" onClick={() => {if(val.progress<100){this.addFive(val.task)}}}>+</p></div>
+								</div>
+						</div>
 						)
 					})}
 			</div>
