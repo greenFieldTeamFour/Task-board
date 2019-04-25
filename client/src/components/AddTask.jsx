@@ -128,7 +128,7 @@ export default class AddTask extends Component {
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
 						return (
-						<div>	
+						<div className="Back">	
 							<div className="sec1" key={index}>
 								<p>
 									<button className="del" onClick={() => { this.deleteTask(val.task) }}>
