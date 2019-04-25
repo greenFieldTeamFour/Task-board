@@ -38,11 +38,18 @@ button:hover {
 
 .done {
   transform: scale(0.75);
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.done:hover {
+  background: rgb(255, 255, 255);
+  color:#00a07b;
+  border: 2px solid rgb(255, 255, 255);
 }
 
 .del {
   transform: scale(0.75);
-  border: 2px solid rgb(246, 48, 48);
+  border: 2px solid rgb(255, 255, 255);
 }
 
 .del:hover {
@@ -52,7 +59,7 @@ button:hover {
 }
 
 p:hover {
-  color: #00a07b;  
+  color: #f8f8f8;  
   transform: scale(1.1);
 }
 
@@ -98,8 +105,18 @@ h6{
   color: #00a07b;
   background: none;
 }
-.sec1{
-  display: inline-block;
+
+.App p .drag {
+  margin-right: 15px;
+  cursor: move;
+}
+
+.App {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #00a07b;
+  width: 57%
 }
 
 /*.Back {

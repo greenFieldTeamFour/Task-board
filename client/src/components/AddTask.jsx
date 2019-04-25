@@ -20,6 +20,35 @@ export default class AddTask extends Component {
 			userInput: input
 		});
 	}
+
+	onDragStart = (e, index) => {
+		this.draggedItem = this.state.list[index];
+		e.dataTransfer.effectAllowed = "move";
+		e.dataTransfer.setData("text/html", e.target.parentNode);
+		e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
+	};
+
+	onDragOver = index => {
+		const draggedOverItem = this.state.list[index];
+
+		// if the item is dragged over itself, ignore
+		if (this.draggedItem === draggedOverItem) {
+			return;
+		}
+
+		// filter out the currently dragged item
+		let list = this.state.list.filter(item => item !== this.draggedItem);
+
+		// add the dragged item after the dragged over item
+		list.splice(index, 0, this.draggedItem);
+
+		this.setState({ list });
+	};
+
+	onDragEnd = () => {
+		this.draggedIdx = null
+	};
+
 	//post method to send data to the server wich will be than transfered to the database
 	addTask(task){
 		console.log(`New task added: ${task}`);
@@ -128,26 +157,32 @@ export default class AddTask extends Component {
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
 						return (
-						<div className="Back">	
-							<div className="sec1" key={index}>
-								<p>
-									<button className="del" onClick={() => { this.deleteTask(val.task) }}>
-										Delete
-									</button>
-									{val.task}
-									<button className="done" onClick={() => { this.deleteTask(val.task) }}>
-										Mastered!
-									</button>
+							<div className="App">
+								<p key={index} onDragOver={() => this.onDragOver(index)}>
+									<div
+										className="drag"
+										draggable
+										onDragStart={e => this.onDragStart(e, index)}
+										onDragEnd={this.onDragEnd}
+									>
+										{val.task}
+										<button className="del" onClick={() => { this.deleteTask(val.task) }}>
+											Give up 
+										</button>
+										<div className="bar">
+											<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
+											<div className="bar"><ProgressBar className="barxz"variant="success" now={val.progress} label={`${val.progress}%`}/></div>
+											<div className="bar"><p className="barx" onClick={() => {if(val.progress<100){this.addFive(val.task)}}}>+</p></div>
+										</div>
+										<button className="done" onClick={() => { this.deleteTask(val.task) }}>
+											Mastered!
+										</button>
+									</div>
 								</p>
 							</div>
-								<div className="bar">
-									<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
-									<div className="bar"><ProgressBar className="barxz"variant="success" now={val.progress} label={`${val.progress}%`}/></div>
-									<div className="bar"><p className="barx" onClick={() => {if(val.progress<100){this.addFive(val.task)}}}>+</p></div>
-								</div>
-						</div>
-						)
-					})}
+							)
+						})
+					}
 			</div>
 		);
 	}
