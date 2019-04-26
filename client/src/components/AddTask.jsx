@@ -183,7 +183,7 @@ export default class AddTask extends Component {
 										</button>
 										<div className="bar">
 											<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
-											<div className="bar"><ProgressBar className="barxz"variant="success" now={val.progress} label={`${val.progress}%`}/></div>
+											<div className="bar"><ProgressBar className="barxz" striped animated variant="warning" now={val.progress} label={`${val.progress}%`}/></div>
 											<div className="bar"><p className="barx" onClick={() => {if(val.progress<100){this.addFive(val.task)}}}>+</p></div>
 										</div>
 										<button className="done" onClick={() => { this.masteredTask(val.task); this.deleteTask(val.task) }}>
