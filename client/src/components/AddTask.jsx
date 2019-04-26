@@ -6,7 +6,6 @@ export default class AddTask extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			now: 0,
 			//Create a placeholder for the user to enter their input
 			userInput: '',
 			//place holder to save user input
@@ -72,6 +71,19 @@ export default class AddTask extends Component {
 		$.ajax({
 			url: '/tasks',
 			type: 'DELETE',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				task:task
+			}),
+			success: () => this.getData()
+		});
+	}
+	// mastered a task
+	masteredTask(task){
+		console.log(`New task mastered: ${task}`);
+		$.ajax({
+			url: '/mastered',
+			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
 				task:task
@@ -174,7 +186,7 @@ export default class AddTask extends Component {
 											<div className="bar"><ProgressBar className="barxz"variant="success" now={val.progress} label={`${val.progress}%`}/></div>
 											<div className="bar"><p className="barx" onClick={() => {if(val.progress<100){this.addFive(val.task)}}}>+</p></div>
 										</div>
-										<button className="done" onClick={() => { this.deleteTask(val.task) }}>
+										<button className="done" onClick={() => { this.masteredTask(val.task); this.deleteTask(val.task) }}>
 											Mastered!
 										</button>
 									</div>

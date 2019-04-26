@@ -11,6 +11,16 @@ CREATE TABLE Tasks (
   PRIMARY KEY (ID)
 );
 
-INSERT INTO Tasks (id, task, progress) VALUES (1, "Example habit 1", 0);
-INSERT INTO Tasks (id, task, progress) VALUES (2, "Example habit 2", 5);
-INSERT INTO Tasks (id, task, progress) VALUES (3, "Example habit 3", 10);
+INSERT INTO Tasks (id, task, progress) VALUES (1, "Exercise for 1 hour", 0);
+INSERT INTO Tasks (id, task, progress) VALUES (2, "Drink a glass of water in the morning", 5);
+INSERT INTO Tasks (id, task, progress) VALUES (3, "Study Python at least 30 minutes", 10);
+
+CREATE TABLE Habits (
+  id int NOT NULL AUTO_INCREMENT,
+  habit varchar(150) NOT NULL,
+  fecha DATE NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO Habits (id, habit, fecha) VALUES (1, "Making the bed every day", curdate());
+INSERT INTO Habits (id, habit, fecha) VALUES (2, "Silence phone at 10 pm", curdate());

@@ -123,3 +123,13 @@ h6{
   background-color: #00a07b;
   width: 50%
 }*/
+
+.arch:hover{
+  color: black;
+  transform: scale(1);
+}
+
+.innerArch{
+  background: none;
+  color: #00a07b;
+}
