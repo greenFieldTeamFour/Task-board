@@ -28,14 +28,14 @@ button {
   color:black;
   cursor:pointer;
   transition:all .3s;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 
 button:hover {
   background:#00a07b;
   color:#fff;
   border: 2px solid #00a07b;
-  border-radius: 25px 15px;
+  border-radius: 25px 5px;
 }
 
 .done {
