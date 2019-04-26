@@ -84,7 +84,7 @@ masterOne = (task, cb) => {
     }
   })
 }
-tasksRoutes.delete('/mastered', (req, res) => {
+tasksRoutes.post('/mastered', (req, res) => {
   const task = req.body.task;
   console.log(`Deleted task: ${task}`);
   masterOne(task, (err, results) => {

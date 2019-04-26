@@ -83,7 +83,7 @@ export default class AddTask extends Component {
 		console.log(`New task mastered: ${task}`);
 		$.ajax({
 			url: '/mastered',
-			type: 'DELETE',
+			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({
 				task:task
