@@ -12,7 +12,7 @@ CREATE TABLE Tasks (
 );
 
 INSERT INTO Tasks (id, task, progress) VALUES (1, "Exercise for 1 hour", 0);
-INSERT INTO Tasks (id, task, progress) VALUES (2, "Drink one glass of water before and after sleeping", 5);
+INSERT INTO Tasks (id, task, progress) VALUES (2, "Drink a glass of water in the morning", 5);
 INSERT INTO Tasks (id, task, progress) VALUES (3, "Study Python at least 30 minutes", 10);
 
 CREATE TABLE Habits (
