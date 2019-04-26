@@ -38,6 +38,17 @@ button:hover {
   border-radius: 25px 5px;
 }
 
+.bHT:hover{
+  padding:8px 12px;
+  margin:20px 0px 20px 0px;
+  border:2px solid #00a07b;
+  background:0;
+  color:black;
+  cursor:pointer;
+  transition:all .3s;
+  border-radius: 25px;
+}
+
 .done {
   transform: scale(0.75);
   border: 2px solid rgb(255, 255, 255);
@@ -58,6 +69,18 @@ button:hover {
   background: rgb(246, 48, 48);
   color:#fff;
   border: 2px solid rgb(246, 48, 48);
+}
+
+.del2{
+  transform: scale(0.75);
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.del2:hover{
+  transform: scale(0.75);
+  border: 2px solid rgb(255, 255, 255);
+  color: black;
+  border-radius: 25px;
 }
 
 p:hover {
@@ -135,4 +158,13 @@ h6{
 .innerArch{
   background: none;
   color: #00a07b;
+}
+
+.HT:hover{
+  transform: scale(1.05);
+  color: #00a07b;
+}
+
+.minusHT:hover{
+  cursor: pointer;
 }

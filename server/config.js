@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/../client/dist"));
 app.use(tasksRoutes)
 // set port to listen, is going to be set eihter by the process or is going to be 3000
-const port = (process.env.PORT || 3004);
+const port = (process.env.PORT || 3003);
 // listening on 3000
 app.listen(port, () => {
   console.log(`Listening on Port ${port}`);
