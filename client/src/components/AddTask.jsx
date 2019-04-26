@@ -178,7 +178,7 @@ export default class AddTask extends Component {
 										onDragEnd={this.onDragEnd}
 									>
 										{val.task}
-										<button className="del" onClick={() => { this.deleteTask(val.task) }}>
+										<button className="del" onClick={() => { if(confirm("Winners don't quit!")){this.deleteTask(val.task)} }}>
 											Give up 
 										</button>
 										<div className="bar">
