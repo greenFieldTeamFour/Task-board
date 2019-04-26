@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default class AddTask extends Component {
 	constructor(props) {
@@ -138,6 +139,16 @@ export default class AddTask extends Component {
 	}
 	// obligatory render method
 	render() {
+		if (this.state.list.length === 0) {
+      return (
+				<div>
+				<br/><br/><br/>
+				<Spinner animation="border" variant="success" role="status">
+					<span className="sr-only">Loading...</span>
+				</Spinner></div>
+			)
+		}
+
 		return (
 			<div>
 				<div>

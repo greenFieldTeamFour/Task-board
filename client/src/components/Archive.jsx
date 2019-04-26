@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default class Archive extends Component {
 
@@ -31,6 +32,15 @@ export default class Archive extends Component {
   }
   
   render () {
+		if (this.state.list.length === 0) {
+      return (
+				<div>
+				<br/><br/><br/>
+				<Spinner animation="border" variant="success" role="status">
+					<span className="sr-only">Loading...</span>
+				</Spinner></div>
+			)
+		}
     return (
       <div>
         <br/>
