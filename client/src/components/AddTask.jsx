@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 export default class AddTask extends Component {
 	constructor(props) {
@@ -139,6 +141,11 @@ export default class AddTask extends Component {
 	}
 	// obligatory render method
 	render() {
+		const popover = (
+			<Popover id="popover-basic" >
+				You can master this habit when you reach a 100% progress!
+			</Popover>
+		);
 		if (this.state.list.length === 0) {
       return (
 				<div>
@@ -198,9 +205,9 @@ export default class AddTask extends Component {
 											<div className="bar"><ProgressBar className="barxz" striped animated variant="warning" now={val.progress} label={`${val.progress}%`}/></div>
 											<div className="bar"><p className="barx" onClick={() => {if(val.progress<=95){this.addFive(val.task)}}}>+</p></div>
 										</div>
-										<button className="done" onClick={() => { console.log('XD')	}}>
+										<OverlayTrigger trigger="click" placement="right" overlay={popover}><button className="done" onClick={() => { console.log('XD')	}}>
 											Mastered!
-										</button>
+										</button></OverlayTrigger>
 									</div>
 								</p>
 							</div>
@@ -225,9 +232,9 @@ export default class AddTask extends Component {
 												<div className="bar"><ProgressBar className="barxz" striped animated variant="danger" now={val.progress} label={`${val.progress}%`}/></div>
 												<div className="bar"><p className="barx" onClick={() => {if(val.progress<=95){this.addFive(val.task)}}}>+</p></div>
 											</div>
-											<button className="done1" onClick={() => { console.log(':D') }}>
+											<OverlayTrigger trigger="click" placement="right" overlay={popover}><button className="done1" onClick={() => { console.log(':D') }}>
 												Mastered!
-											</button>
+											</button></OverlayTrigger>
 										</div>
 									</p>
 								</div>
