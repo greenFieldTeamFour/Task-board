@@ -179,9 +179,10 @@ export default class AddTask extends Component {
 				<br />
 					{/*iterate through list and return it so its displayed*/}
 					{this.state.list.map((val, index) => {
+						if (val.progress < 100 && val.progress > 50) {
 						return (
-							<div className="App">
-								<p key={index} onDragOver={() => this.onDragOver(index)}>
+							<div className="App" key={index}>
+								<p onDragOver={() => this.onDragOver(index)}>
 									<div
 										className="drag"
 										draggable
@@ -197,7 +198,61 @@ export default class AddTask extends Component {
 											<div className="bar"><ProgressBar className="barxz" striped animated variant="warning" now={val.progress} label={`${val.progress}%`}/></div>
 											<div className="bar"><p className="barx" onClick={() => {if(val.progress<=95){this.addFive(val.task)}}}>+</p></div>
 										</div>
-										<button className="done" onClick={() => { this.masteredTask(val.task); this.deleteTask(val.task) }}>
+										<button className="done" onClick={() => { console.log('XD')	}}>
+											Mastered!
+										</button>
+									</div>
+								</p>
+							</div>
+							)
+						}
+						if (val.progress <=50) {
+							return (
+								<div className="App" key={index}>
+									<p onDragOver={() => this.onDragOver(index)}>
+										<div
+											className="drag"
+											draggable
+											onDragStart={e => this.onDragStart(e, index)}
+											onDragEnd={this.onDragEnd}
+										>
+											{val.task}
+											<button className="del" onClick={() => { if(confirm("Winners don't quit!")){this.deleteTask(val.task)} }}>
+												Give up 
+											</button>
+											<div className="bar">
+												<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
+												<div className="bar"><ProgressBar className="barxz" striped animated variant="danger" now={val.progress} label={`${val.progress}%`}/></div>
+												<div className="bar"><p className="barx" onClick={() => {if(val.progress<=95){this.addFive(val.task)}}}>+</p></div>
+											</div>
+											<button className="done1" onClick={() => { console.log(':D') }}>
+												Mastered!
+											</button>
+										</div>
+									</p>
+								</div>
+								)
+							}
+
+						return (
+							<div className="App" key={index}>
+								<p onDragOver={() => this.onDragOver(index)}>
+									<div
+										className="drag"
+										draggable
+										onDragStart={e => this.onDragStart(e, index)}
+										onDragEnd={this.onDragEnd}
+									>
+										{val.task}
+										<button className="del" onClick={() => { if(confirm("Winners don't quit!")){this.deleteTask(val.task)} }}>
+											Give up 
+										</button>
+										<div className="bar">
+											<div className="bar" ><p className="barx" onClick={() => {if(val.progress>0){this.subFive(val.task)}}}>-</p></div> 
+											<div className="bar"><ProgressBar className="barxz" striped animated now={val.progress} label={`${val.progress}%`}/></div>
+											<div className="bar"><p className="barx" onClick={() => {if(val.progress<=95){this.addFive(val.task)}}}>+</p></div>
+										</div>
+										<button className="done2" onClick={() => { this.masteredTask(val.task); this.deleteTask(val.task) }}>
 											Mastered!
 										</button>
 									</div>
