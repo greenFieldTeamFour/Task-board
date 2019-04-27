@@ -55,9 +55,31 @@ button:hover {
 }
 
 .done:hover {
-  background: rgb(255, 255, 255);
-  color:#00a07b;
+  background: rgb(248, 192, 49);
+  color:#fff;
+  border: 2px solid rgb(248, 192, 49);
+}
+
+.done1 {
+  transform: scale(0.75);
   border: 2px solid rgb(255, 255, 255);
+}
+
+.done1:hover {
+  background: rgb(246, 48, 48);
+  color:#fff;
+  border: 2px solid rgb(246, 48, 48);
+}
+
+.done2 {
+  transform: scale(0.75);
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.done2:hover {
+  background: rgb(48, 124, 246);
+  color:#fff;
+  border: 2px solid rgb(48, 124, 246);
 }
 
 .del {
